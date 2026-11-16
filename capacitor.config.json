@@ -10,6 +10,10 @@
       "youtu.be",
       "google.com",
       "*.google.com",
+      "*.googleapis.com",
+      "*.googlevideo.com",
+      "*.ytimg.com",
+      "*.ggpht.com",
       "wikipedia.org",
       "*.wikipedia.org"
     ]
