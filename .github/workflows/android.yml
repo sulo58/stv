@@ -40,6 +40,28 @@ jobs:
       - name: Android projesi oluştur
         run: npx cap add android
 
+      - name: TV geri tuşunu ana ekrana bağla
+        run: |
+          cat > android/app/src/main/java/com/silo/tv/MainActivity.java <<'EOF'
+          package com.silo.tv;
+
+          import com.getcapacitor.BridgeActivity;
+
+          public class MainActivity extends BridgeActivity {
+              @Override
+              public void onBackPressed() {
+                  if (getBridge() != null && getBridge().getWebView() != null) {
+                      String currentUrl = getBridge().getWebView().getUrl();
+                      if (currentUrl != null && !currentUrl.startsWith("https://localhost")) {
+                          getBridge().getWebView().loadUrl("https://localhost/");
+                          return;
+                      }
+                  }
+                  super.onBackPressed();
+              }
+          }
+          EOF
+
       - name: Android dosyalarını eşitle
         run: npx cap sync android
 
