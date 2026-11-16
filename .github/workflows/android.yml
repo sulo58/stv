@@ -40,6 +40,25 @@ jobs:
       - name: Android projesi oluştur
         run: npx cap add android
 
+      - name: Video için donanım hızlandırmasını aç
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          manifest_path = Path("android/app/src/main/AndroidManifest.xml")
+          manifest = manifest_path.read_text(encoding="utf-8")
+          application_tag = manifest.find("<application")
+          if application_tag == -1:
+              raise SystemExit("AndroidManifest.xml içinde application etiketi bulunamadı")
+          tag_end = manifest.find(">", application_tag)
+          if tag_end == -1:
+              raise SystemExit("application etiketi tamamlanmamış")
+          application = manifest[application_tag:tag_end]
+          if "android:hardwareAccelerated=" not in application:
+              manifest = manifest[:application_tag] + manifest[application_tag:tag_end] + ' android:hardwareAccelerated="true"' + manifest[tag_end:]
+          manifest_path.write_text(manifest, encoding="utf-8")
+          PY
+
       - name: TV geri tuşunu ana ekrana bağla
         run: |
           cat > android/app/src/main/java/com/silo/tv/MainActivity.java <<'EOF'
