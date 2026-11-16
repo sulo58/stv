@@ -1,7 +1,17 @@
-
 {
   "appId": "com.silo.tv",
   "appName": "S1L0 TV",
   "webDir": "www",
-  "bundledWebRuntime": false
+  "bundledWebRuntime": false,
+  "server": {
+    "allowNavigation": [
+      "youtube.com",
+      "*.youtube.com",
+      "youtu.be",
+      "google.com",
+      "*.google.com",
+      "wikipedia.org",
+      "*.wikipedia.org"
+    ]
+  }
 }
