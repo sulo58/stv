@@ -23,6 +23,13 @@ header span {
     color: #00d9a5;
 }
 
+.clock {
+    margin-top: 8px;
+    color: #00d9a5;
+    font-size: 36px;
+    font-variant-numeric: tabular-nums;
+}
+
 header p {
     color: #aaa;
 }
@@ -65,5 +72,5 @@ h2 {
 footer {
     position: fixed;
     bottom: 15px;
-    color: #777;
+    color: #aaa;
 }
